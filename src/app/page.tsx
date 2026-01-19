@@ -48,25 +48,26 @@ export default function Home() {
       <main className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center pt-20">
         <div className="max-w-5xl mx-auto space-y-12">
           <h1 className="text-5xl md:text-8xl font-bold leading-tight tracking-tight text-white">
-            Adaptive Logo Design <br />
-            for Your Brand
+           Frontend Developer & UI/UX Designer
           </h1>
 
           <div className="flex justify-center pt-4">
             <Link
               href="/works"
-              className="group flex items-center space-x-12 bg-[#FF8139] hover:bg-[#FF9747] text-white px-12 py-5 rounded-full text-[13px] font-black tracking-[0.2em] uppercase transition-all transform hover:scale-105"
+              className="group flex items-center justify-center bg-[#FF8139] hover:bg-[#FF9747] text-white px-12 py-5 rounded-full text-[13px] font-black tracking-[0.2em] uppercase transition-all duration-500 transform hover:scale-105"
             >
-              <span>Explore Works</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-8 group-hover:translate-x-2 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <span className="transition-transform duration-500 group-hover:-translate-x-2">Explore Works</span>
+              <div className="w-0 overflow-hidden group-hover:w-8 group-hover:ml-4 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>
