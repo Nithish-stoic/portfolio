@@ -5,6 +5,7 @@ import { projects } from "@/data/projects";
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const filteredProjects = activeFilter
     ? Object.entries(projects).filter(([_, p]) => p.category === activeFilter)
@@ -42,14 +43,41 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Mobile menu icon (simplified) */}
-        <div className="md:hidden">
-          <button className="text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+        {/* Mobile menu icon */}
+        <div className="md:hidden z-50">
+          <button
+            className="text-white p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            )}
           </button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center space-y-8 md:hidden">
+            <Link href="/" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              HOME
+            </Link>
+            <Link href="/about" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              ABOUT ME
+            </Link>
+            <Link href="/works" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              MY WORKS
+            </Link>
+            <Link href="/contact" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              CONTACT
+            </Link>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}

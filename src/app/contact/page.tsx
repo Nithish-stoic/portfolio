@@ -6,6 +6,7 @@ export default function ContactPage() {
     const [name, setName] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -46,12 +47,33 @@ export default function ContactPage() {
                         CONTACT
                     </Link>
                 </div>
-            </nav>
+
+
+                {/* Mobile menu icon */}
+                <div className="md:hidden z-50">
+                    <button
+                        className="text-white p-2"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                            </svg>
+                        )}
+                    </button>
+                </div>
+
+
+            </nav >
 
             {/* Main Content */}
-            <main className="pt-40 pb-24 px-10 lg:px-44 max-w-[1920px] mx-auto space-y-32">
+            < main className="pt-40 pb-24 px-10 lg:px-44 max-w-[1920px] mx-auto space-y-32" >
                 {/* Header Section */}
-                <header className="space-y-4">
+                < header className="space-y-4" >
                     <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-none text-white">
                         Contact Me
                     </h1>
@@ -59,10 +81,10 @@ export default function ContactPage() {
                         For Any Project Knock Us
                     </p>
                     <div className="w-full h-px bg-white/10 mt-12" />
-                </header>
+                </header >
 
                 {/* Form Section */}
-                <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
+                < section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start" >
                     <div className="space-y-6">
                         <h2 className="text-4xl md:text-6xl font-black leading-tight tracking-tight text-white max-w-sm">
                             Get in <br />
@@ -111,19 +133,19 @@ export default function ContactPage() {
                             </button>
                         </div>
                     </form>
-                </section>
+                </section >
 
                 {/* Visual Image */}
-                <section className="relative w-full aspect-[21/9] overflow-hidden rounded-[2.5rem] border border-white/5">
+                < section className="relative w-full aspect-[21/9] overflow-hidden rounded-[2.5rem] border border-white/5" >
                     <img
                         src="/contact_laptop.png"
                         alt="Atmospheric laptop setup"
                         className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
                     />
-                </section>
+                </section >
 
                 {/* Contact Details Footer */}
-                <section className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 text-center md:text-left border-t border-white/10">
+                < section className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 text-center md:text-left border-t border-white/10" >
                     <div className="space-y-2">
                         <p className="text-[13px] font-black tracking-wider text-white">Purasaiwakkam, Chennai</p>
                     </div>
@@ -135,8 +157,25 @@ export default function ContactPage() {
                             nithishwork0@gmail.com
                         </p>
                     </div>
-                </section>
-            </main>
+                </section >
+            </main >
+            {/* Mobile Menu Overlay */}
+            {isMobileMenuOpen && (
+                <div className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center space-y-8 md:hidden">
+                    <Link href="/" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        HOME
+                    </Link>
+                    <Link href="/about" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        ABOUT ME
+                    </Link>
+                    <Link href="/works" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        MY WORKS
+                    </Link>
+                    <Link href="/contact" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        CONTACT
+                    </Link>
+                </div>
+            )}
         </div>
     );
 }

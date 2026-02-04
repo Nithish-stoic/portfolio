@@ -1,6 +1,9 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 
 export default function AboutPage() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
         <div className="relative min-h-screen bg-black text-white font-sans overflow-x-hidden">
             {/* Navigation */}
@@ -34,12 +37,32 @@ export default function AboutPage() {
                         CONTACT
                     </Link>
                 </div>
-            </nav>
+
+                {/* Mobile menu icon */}
+                <div className="md:hidden z-50">
+                    <button
+                        className="text-white p-2"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                            </svg>
+                        )}
+                    </button>
+                </div>
+
+
+            </nav >
 
             {/* Main Content */}
-            <main className="pt-40 pb-24 px-10 lg:px-44 max-w-[1920px] mx-auto">
+            < main className="pt-40 pb-24 px-10 lg:px-44 max-w-[1920px] mx-auto" >
                 {/* Header Section */}
-                <header className="space-y-4 mb-20">
+                < header className="space-y-4 mb-20" >
                     <h1 className="text-6xl md:text-5xl font-black tracking-tight leading-none text-white">
                         About Me
                     </h1>
@@ -47,10 +70,10 @@ export default function AboutPage() {
                         Little Brief About Myself
                     </p>
                     <div className="w-full h-px bg-white/10 mt-12" />
-                </header>
+                </header >
 
                 {/* Mission Section */}
-                <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start mb-32">
+                < section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start mb-32" >
                     <h2 className="text-4xl md:text-5xl font-black leading-[1.1] tracking-tight text-white max-w-xl">
                         My mission
                         is to make
@@ -66,12 +89,12 @@ export default function AboutPage() {
                             By combining technical development skills with a deep understanding of user experience, I help brands build a professional presence without the usual hassle.
                         </p>
                     </div>
-                </section>
+                </section >
 
 
 
                 {/* Social Section */}
-                <footer className="pt-16 border-t border-white/10">
+                < footer className="pt-16 border-t border-white/10" >
                     <div className="space-y-12">
                         <h3 className="text-4xl md:text-5xl font-black text-white tracking-tight">
                             Follow me on:
@@ -94,8 +117,28 @@ export default function AboutPage() {
                             ))}
                         </div>
                     </div>
-                </footer>
-            </main>
-        </div>
+                </footer >
+            </main >
+
+            {/* Mobile Menu Overlay */}
+            {
+                isMobileMenuOpen && (
+                    <div className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center space-y-8 md:hidden">
+                        <Link href="/" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            HOME
+                        </Link>
+                        <Link href="/about" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            ABOUT ME
+                        </Link>
+                        <Link href="/works" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            MY WORKS
+                        </Link>
+                        <Link href="/contact" className="text-2xl font-bold tracking-widest hover:text-[#FF8139] transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            CONTACT
+                        </Link>
+                    </div>
+                )
+            }
+        </div >
     );
 }
