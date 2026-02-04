@@ -8,7 +8,7 @@ export default function AboutPage() {
                 {/* Logo */}
                 <div className="flex items-center space-x-0.5 text-2xl font-black tracking-[-0.05em]">
                     <Link href="/">
-                        <span>NITHESH <br /> KUMAR M</span>
+                        <span>NITHESH KUMAR M</span>
                     </Link>
                 </div>
 
@@ -57,50 +57,18 @@ export default function AboutPage() {
                         design
                         easier.
                     </h2>
-                    <div className="space-y-8 text-[#8a8a8a] text-lg leading-relaxed max-w-lg mt-4 lg:mt-0">
+                    <div className="space-y-8 text-[#8a8a8a] text-lg leading-relaxed max-w-lg mt-4 lg:mt-0 text-justify">
                         <p>
-                            Create custom Designs with NITHESH that converts more visitors
-                            than any website. With lots of unique design, you can easily
-                            select a logo without hassle.
+                            I am a Frontend Developer & UI/UX Designer driven by a singular mission: to make design easier.
+                            I specialize in creating custom designs and landing logos that are not only visually unique but are also strategically built to convert more visitors than standard websites.
                         </p>
                         <p>
-                            Create custom landing logos with NITHESH that converts more visitors
-                            than any website. With lots of unique design, you can easily
-                            build a logo without porbolem.
+                            By combining technical development skills with a deep understanding of user experience, I help brands build a professional presence without the usual hassle.
                         </p>
                     </div>
                 </section>
 
-                {/* Photo Grid */}
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-32">
-                    {/* Portrait 1 */}
-                    <div className="relative group">
-                        <div className="relative z-10 overflow-hidden rounded-[2.5rem] border border-white/5 aspect-[4/5] sm:aspect-auto">
-                            <img
-                                src="/hoodie_portrait.png"
-                                alt="Portrait with hoodie"
-                                className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 transition-all duration-700"
-                            />
-                        </div>
-                        {/* Decorative Capsules */}
-                        <div className="absolute top-1/2 -left-6 w-8 h-24 border border-[#FF8139] rounded-full z-20 opacity-60" />
-                        <div className="absolute -top-4 -left-4 w-24 h-8 border border-[#FF8139]/30 rounded-full z-0" />
-                    </div>
 
-                    {/* Portrait 2 */}
-                    <div className="relative group md:mt-12">
-                        <div className="relative z-10 overflow-hidden rounded-[2.5rem] border border-white/5 aspect-[4/5] sm:aspect-auto">
-                            <img
-                                src="/casual_portrait.png"
-                                alt="Casual portrait"
-                                className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 transition-all duration-700"
-                            />
-                        </div>
-                        {/* Decorative Capsules */}
-                        <div className="absolute -bottom-6 -right-6 w-32 h-10 border border-[#FF8139] rounded-full z-20 opacity-60" />
-                        <div className="absolute -bottom-10 -right-2 w-10 h-32 border border-[#FF8139]/30 rounded-full z-0" />
-                    </div>
-                </section>
 
                 {/* Social Section */}
                 <footer className="pt-16 border-t border-white/10">

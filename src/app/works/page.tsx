@@ -1,6 +1,15 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
+import { projects } from "@/data/projects";
 
 export default function WorksPage() {
+    const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+    const filteredProjects = activeFilter
+        ? Object.entries(projects).filter(([_, p]) => p.category === activeFilter)
+        : Object.entries(projects);
+
     return (
         <div className="relative min-h-screen bg-black text-white font-sans overflow-x-hidden">
             {/* Navigation */}
@@ -8,7 +17,7 @@ export default function WorksPage() {
                 {/* Logo */}
                 <div className="flex items-center space-x-0.5 text-2xl font-black tracking-[-0.05em]">
                     <Link href="/">
-                        <span>NITHESH  KUMAR M</span>
+                        <span>NITHESH KUMAR M</span>
                     </Link>
                 </div>
 
@@ -45,10 +54,14 @@ export default function WorksPage() {
                     </h2>
                     {/* Category Filters */}
                     <div className="flex flex-wrap justify-center gap-4 lg:gap-8">
-                        {['UI/UX', 'REACT.JS', 'AI/ML'].map((filter) => (
+                        {['UI/UX', 'REACT.JS'].map((filter) => (
                             <button
                                 key={filter}
-                                className="px-8 lg:px-10 py-3 rounded-full border border-[#FF8139] text-[11px] font-bold tracking-[0.2em] text-white hover:bg-[#FF8139] transition-all uppercase"
+                                onClick={() => setActiveFilter(activeFilter === filter ? null : filter)}
+                                className={`px-8 lg:px-10 py-3 rounded-full border border-[#FF8139] text-[11px] font-bold tracking-[0.2em] transition-all uppercase ${activeFilter === filter
+                                    ? "bg-[#FF8139] text-white"
+                                    : "text-white hover:bg-[#FF8139]"
+                                    }`}
                             >
                                 {filter}
                             </button>
@@ -58,73 +71,23 @@ export default function WorksPage() {
 
                 {/* Project Grid */}
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 lg:gap-x-16 lg:gap-y-24">
-                    {/* Project 1 */}
-                    <Link href="/works/brand-journey" className="group space-y-6 block">
-                        <div className="relative overflow-hidden rounded-[2.5rem] aspect-square bg-[#0a0a0a] border border-white/5">
-                            <img
-                                src="/project-1.png"
-                                alt="Brand Journey Improvements"
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                        </div>
-                        <div className="space-y-4 px-2">
-                            <h3 className="text-xl lg:text-2xl font-bold flex items-center">
-                                Brand Journey Improvements
-                                <span className="ml-4 w-10 h-[1.5px] bg-[#FF8139]"></span>
-                            </h3>
-                        </div>
-                    </Link>
-
-                    {/* Project 2 */}
-                    <Link href="/works/brand-grouping" className="group space-y-6 block">
-                        <div className="relative overflow-hidden rounded-[2.5rem] aspect-square bg-[#0a0a0a] border border-white/5">
-                            <img
-                                src="/project-2.png"
-                                alt="Brand Grouping"
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                        </div>
-                        <div className="space-y-4 px-2">
-                            <h3 className="text-xl lg:text-2xl font-bold flex items-center">
-                                Brand Grouping
-                                <span className="ml-4 w-10 h-[1.5px] bg-[#FF8139]"></span>
-                            </h3>
-                        </div>
-                    </Link>
-
-                    {/* Project 3 */}
-                    <Link href="/works/nft-glimps" className="group space-y-6 block">
-                        <div className="relative overflow-hidden rounded-[2.5rem] aspect-square bg-[#0a0a0a] border border-white/5">
-                            <img
-                                src="/project-3.png"
-                                alt="NFT Glimps"
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                        </div>
-                        <div className="space-y-4 px-2">
-                            <h3 className="text-xl lg:text-2xl font-bold flex items-center">
-                                NFT Glimps
-                                <span className="ml-4 w-10 h-[1.5px] bg-[#FF8139]"></span>
-                            </h3>
-                        </div>
-                    </Link>
-
-                    {/* Project 4 */}
-                    <Link href="/works/brand-suggestions" className="group space-y-6 block">
-                        <div className="relative overflow-hidden rounded-[2.5rem] aspect-square bg-[#0a0a0a] border border-white/5">
-                            <img
-                                src="/project-4.png"
-                                alt="Brand Suggestions"
-                                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                        </div>
-                        <div className="space-y-4 px-2">
-                            <h3 className="text-xl lg:text-2xl font-bold flex items-center">
-                                Brand Suggestions
-                                <span className="ml-4 w-10 h-[1.5px] bg-[#FF8139]"></span>
-                            </h3>
-                        </div>
-                    </Link>
+                    {filteredProjects.map(([slug, project]) => (
+                        <Link key={slug} href={`/works/${slug}`} className="group space-y-6 block">
+                            <div className="relative overflow-hidden rounded-[2.5rem] aspect-square bg-[#0a0a0a] border border-white/5">
+                                <img
+                                    src={project.heroImage}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                />
+                            </div>
+                            <div className="space-y-4 px-2">
+                                <h3 className="text-xl lg:text-2xl font-bold flex items-center">
+                                    {project.title}
+                                    <span className="ml-4 w-10 h-[1.5px] bg-[#FF8139]"></span>
+                                </h3>
+                            </div>
+                        </Link>
+                    ))}
                 </section>
             </main>
         </div>

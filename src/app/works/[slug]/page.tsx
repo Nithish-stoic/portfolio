@@ -1,64 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const projects = {
-    "brand-journey": {
-        title: "Brand Journey Improvements",
-        subtitle: "Strategic Brand Elevation",
-        heroImage: "/project-1.png",
-        storyLines: [
-            "The Brand Journey Improvements project focused on redefining how users interact with evolving brand identities. We explored the intersection of heritage and modern minimalism, ensuring every touchpoint felt intentional and progressive.",
-            "By leveraging advanced 3D visualization and kinetic typography, we created a digital experience that breathes life into static brand guidelines, allowing them to adapt dynamically across platforms."
-        ],
-        dayOneLines: [
-            "The initial phase involved a deep dive into the brand's core values. We realized that 'movement' was the key missing element. Starting with day one, we prioritized modularity and fluid transitions.",
-            "A clean, minimalist approach was taken to preserve the brand's legacy while pushing it into the future with bold, interactive elements and a refined color palette."
-        ],
-        gridImages: ["/project_detail_prism.png", "/project_detail_hand.png"]
-    },
-    "brand-grouping": {
-        title: "Brand Grouping",
-        subtitle: "Visual Identity Systems",
-        heroImage: "/project-2.png",
-        storyLines: [
-            "Brand Grouping was an exercise in organization and visual hierarchy. We developed a system that allows disparate brand elements to coexist under a unified aesthetic umbrella without losing their individual character.",
-            "The challenge was to create a cohesive language that translates across web, print, and environmental design, maintaining consistency in even the most complex brand ecosystems."
-        ],
-        dayOneLines: [
-            "Day one began with sorting hundreds of brand assets. We looked for patterns in texture, light, and geometry. This metadata informed our final grouping strategy.",
-            "The result is a flexible framework that adapts to the scale of the brand, providing a roadmap for future expansion and creative direction."
-        ],
-        gridImages: ["/project_detail_prism.png", "/project_detail_hand.png"]
-    },
-    "nft-glimps": {
-        title: "NFT Glimps",
-        subtitle: "Digital Assets & Web3",
-        heroImage: "/project-3.png",
-        storyLines: [
-            "NFT Glimps explored the visual possibilities of the Web3 space. We focused on high-end 3D abstract renders that evoke a sense of digital rarity and futuristic ownership.",
-            "Each visual was crafted to stand alone as a piece of digital art while fitting into a broader collection aesthetic that values translucency, neon light paths, and complex geometry."
-        ],
-        dayOneLines: [
-            "From the first render, we knew we wanted to focus on light refraction. We spent weeks perfecting the 'glow' that defines the collection's ethereal feel.",
-            "Experimental shaders and post-processing techniques were used to achieve a look that feels both synthetic and organic, capturing the essence of the NFT movement."
-        ],
-        gridImages: ["/project_detail_prism.png", "/project_detail_hand.png"]
-    },
-    "brand-suggestions": {
-        title: "Brand Suggestions",
-        subtitle: "AI-Driven Design Insights",
-        heroImage: "/project-4.png",
-        storyLines: [
-            "Brand Suggestions utilized predictive modeling to offer creative direction to emerging brands. We combined data-driven insights with human-centric design to suggest paths that resonate with target audiences.",
-            "The project demonstrates how AI can empower designers by providing a platform for rapid prototyping and color theory exploration based on consumer psychology."
-        ],
-        dayOneLines: [
-            "We started with a blank canvas and a neural network. Day one was about teaching the system the difference between 'minimalist' and 'empty'.",
-            "The final output is a series of visually stunning case studies that prove technology and art can collaborate to solve complex branding challenges."
-        ],
-        gridImages: ["/project_detail_prism.png", "/project_detail_hand.png"]
-    }
-};
+import { projects } from "@/data/projects";
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -109,6 +52,20 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                     <img src={project.heroImage} alt={project.title} className="w-full h-full object-cover grayscale brightness-90" />
                 </section>
 
+                {/* Live Link */}
+                {project.liveLink && (
+                    <div className="flex justify-center -mt-8 relative z-10">
+                        <a
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-10 py-4 rounded-full bg-[#FF8139] text-white text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all shadow-[0_0_40px_-10px_rgba(255,129,57,0.5)]"
+                        >
+                            Live Link
+                        </a>
+                    </div>
+                )}
+
                 {/* Project Story Section */}
                 <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
                     <h2 className="text-4xl md:text-5xl font-black leading-tight tracking-tight text-white max-w-sm">
@@ -119,14 +76,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                     </div>
                 </section>
 
-                {/* Detailed Grid Visuals */}
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                    {project.gridImages.map((src, i) => (
-                        <div key={i} className="relative overflow-hidden rounded-[2.5rem] border border-white/5 aspect-square bg-[#0a0a0a]">
-                            <img src={src} alt={`Detail ${i + 1}`} className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-700" />
-                        </div>
-                    ))}
-                </section>
+
 
                 {/* Day One Section */}
                 <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
@@ -163,7 +113,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                         {otherProjects.map(([slug, p], i) => (
                             <Link key={slug} href={`/works/${slug}`} className="group space-y-6">
                                 <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#0a0a0a] border border-white/5">
-                                    <img src={i === 0 ? "/project_other_head.png" : i === 1 ? "/project_other_car.png" : p.heroImage} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+                                    <img src={p.heroImage} alt={p.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
                                 </div>
                                 <div className="space-y-2">
                                     <h3 className="text-xl font-bold">{p.title}</h3>

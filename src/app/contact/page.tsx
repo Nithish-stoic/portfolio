@@ -1,6 +1,18 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 
 export default function ContactPage() {
+    const [name, setName] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const mailtoLink = `mailto:nithishwork0@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\n\n${message}`)}`;
+        window.location.href = mailtoLink;
+    };
+
     return (
         <div className="relative min-h-screen bg-black text-white font-sans overflow-x-hidden">
             {/* Navigation */}
@@ -8,7 +20,7 @@ export default function ContactPage() {
                 {/* Logo */}
                 <div className="flex items-center space-x-0.5 text-2xl font-black tracking-[-0.05em]">
                     <Link href="/">
-                        <span>NITHESH <br /> KUMAR M</span>
+                        <span>NITHESH KUMAR M</span>
                     </Link>
                 </div>
 
@@ -59,26 +71,35 @@ export default function ContactPage() {
                         </h2>
                     </div>
 
-                    <form className="space-y-12">
+                    <form className="space-y-12" onSubmit={handleSubmit}>
                         <div className="space-y-2">
                             <label className="text-[11px] font-black tracking-widest text-[#8a8a8a] uppercase">Name</label>
                             <input
                                 type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                                 className="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-[#FF8139] transition-colors"
+                                required
                             />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-black tracking-widest text-[#8a8a8a] uppercase">Subject</label>
                             <input
                                 type="text"
+                                value={subject}
+                                onChange={(e) => setSubject(e.target.value)}
                                 className="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-[#FF8139] transition-colors"
+                                required
                             />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-black tracking-widest text-[#8a8a8a] uppercase">Message</label>
                             <textarea
                                 rows={1}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
                                 className="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-[#FF8139] transition-colors resize-none"
+                                required
                             />
                         </div>
                         <div className="pt-4">
@@ -104,14 +125,14 @@ export default function ContactPage() {
                 {/* Contact Details Footer */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12 text-center md:text-left border-t border-white/10">
                     <div className="space-y-2">
-                        <p className="text-[13px] font-black tracking-wider text-white">Street Avenue 21, CA</p>
+                        <p className="text-[13px] font-black tracking-wider text-white">Purasaiwakkam, Chennai</p>
                     </div>
                     <div className="space-y-2 text-center">
-                        <p className="text-[13px] font-black tracking-wider text-white">+9 0283353</p>
+                        <p className="text-[13px] font-black tracking-wider text-white">6369722708</p>
                     </div>
                     <div className="space-y-2 text-right">
                         <p className="text-[13px] font-black tracking-wider text-white flex items-center justify-end">
-                            info@nithesh.com
+                            nithishwork0@gmail.com
                         </p>
                     </div>
                 </section>
