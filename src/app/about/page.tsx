@@ -77,13 +77,19 @@ export default function AboutPage() {
                             Follow me on:
                         </h3>
                         <div className="flex flex-wrap gap-x-12 lg:gap-x-24 gap-y-8">
-                            {['DRIBBLE', 'TWITTER', 'FACEBOOK', 'INSTAGRAM'].map((social) => (
+                            {[
+                                { name: 'BEHANCE', url: 'https://www.behance.net/mnithimnithi' },
+                                { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/nitheshkumar-m?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
+                                { name: 'INSTAGRAM', url: 'https://www.instagram.com/__mr.stoic__?igsh=eTV4Z2s3YnJpbmh6' }
+                            ].map((social) => (
                                 <a
-                                    key={social}
-                                    href={`#${social.toLowerCase()}`}
+                                    key={social.name}
+                                    href={social.url}
+                                    target={social.url.startsWith('http') ? "_blank" : undefined}
+                                    rel={social.url.startsWith('http') ? "noopener noreferrer" : undefined}
                                     className="text-[13px] font-black tracking-[0.2em] text-white hover:text-[#FF8139] transition-colors duration-200"
                                 >
-                                    {social}
+                                    {social.name}
                                 </a>
                             ))}
                         </div>
